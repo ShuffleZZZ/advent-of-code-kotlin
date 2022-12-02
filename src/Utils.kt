@@ -8,6 +8,9 @@ import java.security.MessageDigest
 fun readInput(name: String) = File("src", "$name.txt")
     .readLines()
 
+/**
+ * Reads blocks of lines separated by empty line.
+ */
 fun readBlocks(name: String) = File("src", "$name.txt")
     .readText()
     .trim('\n')
