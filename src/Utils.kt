@@ -17,7 +17,7 @@ fun <T> Pair<T, T>.intersect(other: Pair<T, T>) where T : Comparable<T> =
 /**
  * One of pairs fully includes other as range.
  */
-fun <T> Pair<T, T>.include(other: Pair<T, T>) where T : Comparable<T> =
+fun <T, K> Pair<T, K>.include(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
     first.compareTo(other.first).sign + second.compareTo(other.second).sign in -1..1
 
 /**

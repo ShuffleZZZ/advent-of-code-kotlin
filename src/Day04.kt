@@ -1,10 +1,10 @@
 fun rangesPairList(input: List<String>) = input.map { "(\\d+)-(\\d+),(\\d+)-(\\d+)".toRegex().find(it)!!.destructured }
-    .map { (it.component1().toInt() to it.component2().toInt()) to (it.component3().toInt() to it.component4().toInt()) }
+    .map { (l1, l2, r1, r2) -> (l1.toInt() to l2.toInt()) to (r1.toInt() to r2.toInt()) }
 
 fun main() {
-    fun part1(input: List<String>) = rangesPairList(input).sumOf { it.first.include(it.second).toInt() }
+    fun part1(input: List<String>) = rangesPairList(input).sumOf { (first, second) -> first.include(second).toInt() }
 
-    fun part2(input: List<String>) = rangesPairList(input).sumOf { it.first.intersect(it.second).toInt() }
+    fun part2(input: List<String>) = rangesPairList(input).sumOf { (first, second) -> first.intersect(second).toInt() }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day04_test")
