@@ -1,4 +1,4 @@
-fun rangesPairList(input: List<String>) = input.map { "(\\d+)-(\\d+),(\\d+)-(\\d+)".toRegex().find(it)!!.destructured }
+private fun rangesPairList(input: List<String>) = input.map { "(\\d+)-(\\d+),(\\d+)-(\\d+)".toRegex().find(it)!!.destructured }
     .map { (l1, l2, r1, r2) -> (l1.toInt() to l2.toInt()) to (r1.toInt() to r2.toInt()) }
 
 fun main() {

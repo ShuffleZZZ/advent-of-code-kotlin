@@ -1,6 +1,6 @@
 import java.util.*
 
-fun stackPeeks(input: List<List<String>>, move: (List<Stack<Char>>, Int, Int, Int) -> Unit): String {
+private fun stackPeeks(input: List<List<String>>, move: (List<Stack<Char>>, Int, Int, Int) -> Unit): String {
     val (towers, instructions) = input
     val stacksSize = towers.last().split("\\s+".toRegex()).last().toInt()
 
