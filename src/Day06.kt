@@ -1,5 +1,5 @@
-const val UNIQUE_PREFIX_SIZE_1 = 4
-const val UNIQUE_PREFIX_SIZE_2 = 14
+private const val UNIQUE_PREFIX_SIZE_1 = 4
+private const val UNIQUE_PREFIX_SIZE_2 = 14
 
 private fun uniquePrefixEnd(input: String, size: Int) =
     input.windowed(size).indexOfFirst { it.toSet().size == it.length } + size

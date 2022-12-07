@@ -7,8 +7,8 @@ fun main() {
 
     // test if implementation meets criteria from the description, like:
     val testInput = readBlocks("Day01_test")
-    check(part1(testInput) == 24000)
-    check(part2(testInput) == 45000)
+    check(part1(testInput) == 24_000)
+    check(part2(testInput) == 45_000)
 
     val input = readBlocks("Day01")
     println(part1(input))
