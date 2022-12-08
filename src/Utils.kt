@@ -5,6 +5,10 @@ import kotlin.math.sign
 
 fun Boolean.toInt() = if (this) 1 else 0
 
+fun IntProgression.isRange() = step.sign > 0
+
+operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = first + other.first to second + other.second
+
 fun <T, K> Pair<T, K>.compareTo(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
     if (first == other.first) second.compareTo(other.second) else first.compareTo(other.first)
 
