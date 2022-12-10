@@ -1,7 +1,6 @@
-private const val LAST_STEP = 220
 private const val SCREEN_WIDTH = 40
 private const val SCREEN_SIZE = 6 * SCREEN_WIDTH
-
+private const val SIGNAL_STRENGTH = SCREEN_WIDTH / 2
 
 private fun cycleSignals(input: List<String>): List<Int> {
     val signals = MutableList(2 * input.size + 1) { 1 }
@@ -25,7 +24,7 @@ fun main() {
     fun part1(input: List<String>): Int {
         val signals = cycleSignals(input)
 
-        return (SCREEN_WIDTH / 2..LAST_STEP step SCREEN_WIDTH).fold(0) { acc, i -> acc + i * signals[i - 1] }
+        return (SIGNAL_STRENGTH..SCREEN_SIZE - SIGNAL_STRENGTH step SCREEN_WIDTH).sumOf { it * signals[it - 1] }
     }
 
     fun part2(input: List<String>): String {
