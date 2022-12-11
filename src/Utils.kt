@@ -40,6 +40,14 @@ fun readBlocks(name: String) = File("src", "$name.txt")
     .map { it.split('\n') }
 
 /**
+ * Reads blocks separated by empty line.
+ */
+fun readRawBlocks(name: String) = File("src", "$name.txt")
+    .readText()
+    .trim('\n')
+    .split("\n\n")
+
+/**
  * Converts string to md5 hash.
  */
 fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
