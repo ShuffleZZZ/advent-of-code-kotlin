@@ -1,5 +1,3 @@
-import kotlin.math.absoluteValue
-
 private fun getGrid(input: List<String>) = input.map { it.map(Char::digitToInt).toTypedArray() }.toTypedArray()
 
 private fun observeLines(grid: Array<Array<Int>>, res: Array<BooleanArray>, lineInds: IntRange, rowInds: IntProgression) {
@@ -34,16 +32,9 @@ private fun observeRows(grid: Array<Array<Int>>, res: Array<BooleanArray>, lineI
     if (lineInds.isRange()) observeRows(grid, res, lineInds.reversed(), rowInds)
 }
 
-private fun scenicScore(grid: Array<Array<Int>>, spot: Pair<Int, Int>): Int {
-    var res = 1
-    for (shiftI in -1..1) {
-        for (shiftJ in -1..1) {
-            if ((shiftI + shiftJ).absoluteValue == 1) res *= observeTree(grid, spot, shiftI to shiftJ)
-        }
-    }
+private fun scenicScore(grid: Array<Array<Int>>, spot: Pair<Int, Int>) =
+    neighbours().map { observeTree(grid, spot, it) }.reduce(Int::times)
 
-    return res
-}
 
 private fun observeTree(grid: Array<Array<Int>>, spot: Pair<Int, Int>, shift: Pair<Int, Int>): Int {
     var dist = 0
