@@ -1,11 +1,23 @@
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 fun Boolean.toInt() = if (this) 1 else 0
 
 fun IntProgression.isRange() = step.sign > 0
+
+operator fun <T> List<List<T>>.get(ind: Pair<Int, Int>) = this[ind.first][ind.second]
+
+operator fun <T> List<MutableList<T>>.set(ind: Pair<Int, Int>, value: T) {
+    this[ind.first][ind.second] = value
+}
+
+fun <T> List<List<T>>.indexPairs(predicate: (T) -> Boolean = { true }) =
+    this.indices.flatMap { i ->
+        this.first().indices.map { j -> i to j }
+    }.filter { predicate(this[it]) }
 
 operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = first + other.first to second + other.second
 
@@ -23,6 +35,19 @@ fun <T> Pair<T, T>.intersect(other: Pair<T, T>) where T : Comparable<T> =
  */
 fun <T, K> Pair<T, K>.include(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
     first.compareTo(other.first).sign + second.compareTo(other.second).sign in -1..1
+
+/**
+ * Returns list of pairs with indexes of non-diagonal neighbours' shifts in 2D array.
+ */
+fun neighbours() =
+    (-1..1).flatMap { i ->
+        (-1..1).filter { j -> (i + j).absoluteValue == 1 }.map { j -> i to j }
+    }
+
+/**
+ * Returns list of pairs with indexes of given point non-diagonal neighbours in 2D array.
+ */
+fun neighbours(point: Pair<Int, Int>) = neighbours().map { it + point }
 
 /**
  * Reads lines from the given input txt file.
