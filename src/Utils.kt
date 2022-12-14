@@ -21,7 +21,9 @@ fun <T> List<List<T>>.indexPairs(predicate: (T) -> Boolean = { true }) =
 
 operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = first + other.first to second + other.second
 
-fun <T, K> Pair<T, K>.compareTo(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
+operator fun Pair<Int, Int>.minus(other: Pair<Int, Int>) = first - other.first to second - other.second
+
+operator fun <T, K> Pair<T, K>.compareTo(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
     if (first == other.first) second.compareTo(other.second) else first.compareTo(other.first)
 
 /**
