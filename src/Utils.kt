@@ -23,8 +23,13 @@ operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = first + other.first to
 
 operator fun Pair<Int, Int>.minus(other: Pair<Int, Int>) = first - other.first to second - other.second
 
+fun Pair<Int, Int>.diff() = (second - first).absoluteValue
+
 operator fun <T, K> Pair<T, K>.compareTo(other: Pair<T, K>) where T : Comparable<T>, K : Comparable<K> =
     if (first == other.first) second.compareTo(other.second) else first.compareTo(other.first)
+
+infix fun Pair<Int, Int>.manhattan(other: Pair<Int, Int>) =
+    (first - other.first).absoluteValue + (second - other.second).absoluteValue
 
 /**
  * Pairs intersect as ranges.
